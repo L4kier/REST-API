@@ -26,7 +26,10 @@ router.all('*', loggedIn, (req, res, next) => {
 })
 
 router.get('/', function (req, res, next) {
-    res.send("Panel administracyjny")
+    res.render("admin/adminPanel", {
+        title: "Panel administratora",
+        username: req.session.username
+    })
 })
 
 router.get('/adduser', function (req, res, next) {
@@ -81,6 +84,11 @@ router.post("/adduser", function (req, res, next) {
 
     })
 
+})
+
+router.get('/logout', (req, res, next)=> {
+    res.clearCookie('session');
+    res.redirect('/login')
 })
 
 module.exports = router;

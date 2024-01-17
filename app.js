@@ -9,6 +9,8 @@ var cookieSession = require('cookie-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+var movieRouter = require('./routes/movie');
+
 const config = require('./config')
 var app = express();
 
@@ -30,6 +32,7 @@ app.use(cookieSession({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/movies', movieRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

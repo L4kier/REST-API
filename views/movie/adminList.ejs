@@ -1,0 +1,43 @@
+<%- include ../layouts/header.ejs %>
+<p>Zalogowano: <span><%=username%></span></p>
+<div class="page-data">
+  <div class="data-btn">
+    <button onclick="logout()">Wyloguj</button>
+    <button onclick="addMovie()">Dodaj nowy film</button>
+  </div>
+  <div class="data-table">
+    <table>
+      <tr>
+        <th width="50px">Nr.</th>
+        <th>Tytuł</th>
+        <th>Reżyser</th>
+        <th>Średnia ocena</th>
+        <th>Gatunek</th>
+        <th width="120px">Akcja</th>
+      </tr>
+      <% if(data.length){
+        for(var i = 0; i< data.length; i++){ %>
+      <tr>
+        <td><%=(i+1)%></td>
+        <td><%=data[i].tytul%></td>
+        <td><%=data[i].rezyser%></td>
+        <td><%=data[i].srednia_ocena%></td>
+        <td><%=data[i].gatunek%></td>
+        <td>
+          <a class="a-inside edit" href="../movies/edit/<%=data[i].id%>">Edycja</a>
+          <a class="a-inside delete" href="../movies/delete/<%=data[i].id%>">Usuń</a>
+        </td>
+      </tr>
+      <% }
+      } else {
+        %>
+      <tr>
+        <td colspan="6">Brak filmów</td>
+      </tr>
+      <%}
+       %>
+    </table>
+  </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

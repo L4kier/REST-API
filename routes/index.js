@@ -9,7 +9,7 @@ const config = require('../config')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Customer panel' });
+  res.render('index', { title: 'Biblioteka filmowa' });
 });
 
 router.get('/login', (req, res, next) => {
@@ -53,7 +53,7 @@ router.post('/login', (req, res, next) => {
       const token = jsonwebtoken.sign(
         {
           login: rows[0].login,
-          isAdmin: rows[0].czyAdmin
+          czyAdmin: rows[0].czyAdmin
         },
         config.SECRET,
         {
