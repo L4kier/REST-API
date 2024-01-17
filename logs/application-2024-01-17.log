@@ -1,10 +1,6 @@
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
-{"level":"info","message":"Connected to the database"}
+{"level":"error","message":"User: testacc logged in"}
+{"level":"info","message":"User: testacc logout"}
+{"level":"info","message":"User: testacc logged in"}
+{"level":"info","message":"User: testacc logout"}
+{"level":"info","message":"User: dawid logged in"}
+{"level":"info","message":"User: dawid logout"}

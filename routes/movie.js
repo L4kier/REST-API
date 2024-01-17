@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require("../db");
 const config = require("../config");
 var jsonwebtoken = require("jsonwebtoken");
+const logger = require("../logs/config");
 
 function getIsAdmin(token, res) {
   try {
@@ -27,7 +28,7 @@ router.get("/", function (req, res, next) {
 
   db.all(sql, [], (err, rows) => {
     if (err)
-      return console.error("Błąd przy próbie pobrania filmów z bazy", err);;
+      return logger.error("Błąd przy próbie pobrania filmów z bazy");;
     const isAdmin = getIsAdmin(req.session.token, res);
     if (isAdmin === 0) {
       res.render("movie/userList", {
@@ -64,7 +65,7 @@ router.post("/add", (req, res, next) => {
   if (isAdmin === 1) {
   const sql = `INSERT INTO movies (tytul, rezyser, srednia_ocena, gatunek) VALUES ($1, $2, $3,$4)`;
     db.all(sql, [tytul, rezyser, srednia_ocena, gatunek], (err, result) => {
-      if (err) return console.error("Błąd przy dodawaniu", err);
+      if (err) return logger.error("Błąd przy dodawaniu filmu", err);
       res.redirect("/movies");
     });
   } else if (isAdmin === 0) {
@@ -79,11 +80,11 @@ router.get("/edit/:id", (req, res, next) => {
   const sql = `SELECT * FROM movies WHERE id=$1`;
 
   db.all(sql, [id], (err, rows) => {
-    if (err) return console.error("Błąd przy próbie pobrania filmów", err);
+    if (err) return logger.error("Błąd przy próbie pobrania filmów");
     const isAdmin = getIsAdmin(req.session.token, res);
     if (isAdmin === 1) {
       res.render("movie/edit", {
-        title: `Edycja Filmu: ${rows[0].name}`,
+        title: `Edycja Filmu: ${rows[0].tytul}`,
         data: rows,
         username: getUserName(req.session.token, res),
       });
@@ -101,7 +102,7 @@ router.post("/edit/:id", (req, res, next) => {
   if (isAdmin === 1) {
     const sql = `UPDATE movies SET tytul=$1, rezyser=$2, srednia_ocena=$3, gatunek=$4 WHERE id=$5`;
     db.all(sql, [tytul, rezyser, srednia_ocena, gatunek, id], (err, result) => {
-      if (err) return console.error("Błąd przy aktualizacji", err);
+      if (err) return logger.error("Błąd przy aktualizacji", err);
       res.redirect("/movies");
     });
   } else {
@@ -117,7 +118,7 @@ router.get("/delete/:id", (req, res, next) => {
     const sql = `DELETE FROM movies WHERE id=$1`;
     db.all(sql, [id], (err, result) => {
       if (err)
-        return console.error("Błąd przy próbie usunięcia filmu z bazy", err);
+        return logger.error("Błąd przy próbie usunięcia filmu z bazy", err);
 
       res.redirect("/movies");
     });

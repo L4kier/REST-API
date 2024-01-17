@@ -4,6 +4,7 @@ var bcrypt = require("bcrypt")
 var db = require("../db")
 const config = require('../config')
 var jsonwebtoken = require('jsonwebtoken')
+var logger = require('../logs/config');
 
 const loggedIn = (req, res, next) => {
     try {
@@ -16,12 +17,13 @@ const loggedIn = (req, res, next) => {
 }
 
 router.get('/logout', (req, res, next)=> {
+
+    logger.info(`User: ${req.session.username} logout`);
     res.clearCookie('session');
     res.redirect('/login')
 })
 
 router.all('*', loggedIn, (req, res, next) => {
-    console.log(req.session.admin);
     if (req.session.admin !== 1) {
         return res.redirect("/movies")
     }
@@ -54,7 +56,7 @@ router.post("/adduser", function (req, res, next) {
     const sql = `SELECT * FROM users WHERE login=$1 LIMIT 1`;
 
     db.all(sql, [login], async (err, rows) => {
-        if (err) return console.error("Błąd przy próbie odczytu z bazy", err.message);
+        if (err) return logger.error("Błąd przy próbie odczytu z bazy", err.message);
 
         if (rows.length === 1) {
             return res.render("admin/addUser", {
@@ -70,7 +72,7 @@ router.post("/adduser", function (req, res, next) {
 
         db.all(sqlInsert, [imie, nazwisko, login, hashedPassword, email, telefon, czyAdmin ], (err, rows) => {
             if (err) {
-                console.error("Błąd przy próbie zapisu do bazy", err.message);
+                logger.error("Błąd przy próbie zapisu do bazy", err.message);
                 res.render("admin/addUser", {
                     title: "Admin - dodawanie użytkownika",
                     message: `Błąd przy próbie zapisu do bazy ${err.message}`,

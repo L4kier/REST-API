@@ -7,8 +7,30 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: solid 2px black;
+  box-shadow: 10px 5px 5px black;
+  min-width: 350px;
+}
+
 a {
   color: #00B7FF;
+}
+
+p {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  font-weight: 500;
+  font-style: italic;
+  font-size: xx-large;
 }
 
 .actions-buttons-container{
@@ -47,3 +69,34 @@ button:active {
   transform: translateY(4px);
 }
 
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}

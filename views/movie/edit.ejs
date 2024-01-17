@@ -2,31 +2,13 @@
 <p>Zalogowano: <span><%=username%></span></p>
 <div class="page-data">
   <form method="POST" action="/movies/edit/<%=data[0].id%>">
-    <table cellpadding="11">
-      <tr>
-        <td class="label">Tytuł</td>
-        <td><input type="text" name="tytul" required value="<%=data[0].tytul%>"></td>
-      </tr>
-      <tr>
-        <td class="label">Reżyser</td>
-        <td><textarea name="rezyser" required cols="30" rows="5"><%=data[0].rezyser%></textarea></td>
-      </tr>
-      <tr>
-        <td class="label">Średnia ocena</td>
-        <td><input type="text" name="srednia_ocena" required value="<%=data[0].srednia_ocena%>"></td>
-      </tr>
-      <tr>
-        <td class="label">Gatunek</td>
-        <td><input type="text" name="gatunek" required value="<%=data[0].gatunek%>"></td>
-      </tr>
-      <tr>
-        <td class="label"></td>
-        <td>
-          <button type="submit">Zapisz</button>
-          <button type="button" onclick="movies()">Anuluj</button>
-        </td>
-      </tr>
-    </table>
+    <p><label>Tytuł</label> <input type="text" name="tytul" required value="<%=data[0].tytul%>"></p>
+    <p><label>Reżyser</label> <input type="text" name="rezyser" required value="<%=data[0].rezyser%>"></p>
+    <p><label>Średnia ocena</label> <input type="number" min="1" max="5" name="srednia_ocena" required value="<%=data[0].srednia_ocena%>"></p>
+    <p><label>Gatunek</label> <input type="text" name="gatunek" required value="<%=data[0].gatunek%>"></p>
+
+    <button style="margin: 5px;" type="submit">Zapisz</button>
+    <button style="margin: 5px;" type="button" onclick="movies()">Anuluj</button>
   </form>
 
 </div>

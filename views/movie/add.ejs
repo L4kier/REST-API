@@ -2,31 +2,14 @@
 <p>Zalogowano: <span><%=username%></span></p>
 <div class="page-data">
   <form method="POST">
-    <table cellpadding="11">
-      <tr>
-        <td class="label">Tytuł</td>
-        <td><input type="text" name="tytul" required></td>
-      </tr>
-      <tr>
-        <td class="label">Reżyser</td>
-        <td><textarea name="rezyser" required cols="30" rows="5"></textarea></td>
-      </tr>
-      <tr>
-        <td class="label">Średnia ocena</td>
-        <td><input type="text" name="srednia_ocena" required></td>
-      </tr>
-      <tr>
-        <td class="label">Gatunek</td>
-        <td><input type="text" name="gatunek" required></td>
-      </tr>
-      <tr>
-        <td class="label"></td>
-        <td>
-          <button style="margin: 5px;" type="submit">Zapisz</button>
-          <button style="margin: 5px;" type="button" onclick="movies()">Anuluj</button>
-        </td>
-      </tr>
-    </table>
+    <p><label>Tytuł</label> <input required type="text" name="tytul"></p>
+    <p><label>Reżyser</label> <input required type="text" name="rezyser"></p>
+    <p><label>Średnia ocena</label> <input required type="number" min="1" max="5" name="srednia_ocena"></p>
+    <p><label>Gatunek</label> <input required type="text" name="gatunek"></p>
+
+    <button style="margin: 5px;" type="submit">Zapisz</button>
+    <button style="margin: 5px;" type="button" onclick="movies()">Anuluj</button>
+
   </form>
 
 </div>

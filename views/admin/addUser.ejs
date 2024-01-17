@@ -1,8 +1,6 @@
 <%- include ../layouts/header.ejs %>
 <p>Zalogowano: <span><%= username %></span></p>
 <p><%= message %></p>
-<button type="button" onclick="admin()">Powrót</button>
-
 <form method="POST">
     <p><label>Login</label> <input type="text" name="login"></p>
     <p><label>Hasło</label> <input type="password" name="haslo"></p>
@@ -13,4 +11,5 @@
     <p><label>Czy Admin?</label> <input type="number" min="0" max="1" name="czyAdmin"></p>
     <button type="submit">Utwórz</button>
 </form>
+<button style="margin-top: 10px;" type="button" onclick="admin()">Powrót</button>
 <%- include ../layouts/footer.ejs %>

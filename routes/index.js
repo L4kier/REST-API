@@ -25,7 +25,7 @@ router.post('/login', (req, res, next) => {
   const sql = `SELECT * FROM users WHERE login=$1 LIMIT 1`
 
   db.all(sql, [login], async (err, rows) => {
-    if (err) return console.error("Błąd odczytu z bazy")
+    if (err) return logger.error("Błąd odczytu z bazy")
 
     if(rows.length === 0) {
       return res.render('login', {
@@ -49,6 +49,8 @@ router.post('/login', (req, res, next) => {
         req.session.admin = 1
       }
       req.session.username = rows[0].login;
+
+      logger.info(`User: ${rows[0].login} logged in`);
 
       const token = jsonwebtoken.sign(
         {
