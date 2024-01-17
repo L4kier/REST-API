@@ -1,29 +1,30 @@
 <%- include ../layouts/header.ejs %>
 <p>Zalogowano: <span><%=username%></span></p>
 <div class="page-data">
+  <button type="button" onclick="logout()">Wyloguj</button>
   <div class="data-table">
     <table>
       <tr>
         <th width="50px">Nr.</th>
-        <th>Nazwa</th>
-        <th>Adres</th>
-        <th>Telefon</th>
-        <th>e-mail</th>
+        <th>Tytuł</th>
+        <th>Reżyser</th>
+        <th>Średnia ocena</th>
+        <th>Gatunek</th>
       </tr>
       <% if(data.length){
         for(var i = 0; i< data.length; i++){ %>
       <tr>
         <td><%=(i+1)%></td>
-        <td><%=data[i].name%></td>
-        <td><%=data[i].address%></td>
-        <td><%=data[i].phone%></td>
-        <td><%=data[i].email%></td>
+        <td><%=data[i].tytul%></td>
+        <td><%=data[i].rezyser%></td>
+        <td><%=data[i].srednia_ocena%></td>
+        <td><%=data[i].gatunek%></td>
       </tr>
       <% }
       } else {
         %>
       <tr>
-        <td colspan="6">Brak klientów</td>
+        <td colspan="6">Brak filmów</td>
       </tr>
       <%}
        %>

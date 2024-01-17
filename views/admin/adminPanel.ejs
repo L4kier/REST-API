@@ -1,7 +1,8 @@
 <%- include ../layouts/header.ejs %>
 <p>Zalogowano: <span><%= username %></span></p>
-<button onclick="logout()">Wyloguj</button>
-
-<button type="button" onclick="addUser()">Dodaj nowego użytkownika</button>
-<button type="button" onclick="movies()">Pokaż filmy</button>
+<div class="actions-buttons-container">
+    <button onclick="logout()">Wyloguj</button>
+    <button type="button" onclick="addUser()">Dodaj nowego użytkownika</button>
+    <button type="button" onclick="movies()">Pokaż filmy</button>
+</div>
 <%- include ../layouts/footer.ejs %>

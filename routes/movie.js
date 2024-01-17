@@ -22,7 +22,6 @@ function getUserName(token, res) {
   }
 }
 
-/* GET users listing. */
 router.get("/", function (req, res, next) {
   const sql = `SELECT * FROM movies`;
 
@@ -30,19 +29,19 @@ router.get("/", function (req, res, next) {
     if (err)
       return console.error("Błąd przy próbie pobrania filmów z bazy", err);;
     const isAdmin = getIsAdmin(req.session.token, res);
-    // if (isAdmin === 0) {
-    //   res.render("customer/list", {
-    //     title: "Customer - klienci",
-    //     username: getUserName(req.session.token, res),
-    //     data: rows,
-    //   });
-    // } else if (isAdmin === 1) {
+    if (isAdmin === 0) {
+      res.render("movie/userList", {
+        title: "Użytkownik - filmy",
+        username: getUserName(req.session.token, res),
+        data: rows,
+      });
+    } else if (isAdmin === 1) {
       res.render("movie/adminList", {
         title: "Administrator - filmy",
         username: getUserName(req.session.token, res),
         data: rows,
       });
-//     }
+    }
   });
 });
 
@@ -53,7 +52,7 @@ router.get("/add", (req, res, next) => {
       title: 'Dodawanie nowego filmu',
       username: getUserName(req.session.token, res),
     });
-  } else {
+  } else if (isAdmin === 0) {
     res.redirect("/movies");
   }
 })
@@ -68,7 +67,7 @@ router.post("/add", (req, res, next) => {
       if (err) return console.error("Błąd przy dodawaniu", err);
       res.redirect("/movies");
     });
-  } else {
+  } else if (isAdmin === 0) {
     res.redirect("/movies");
   }
 
