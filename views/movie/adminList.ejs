@@ -1,9 +1,10 @@
 <%- include ../layouts/header.ejs %>
 <p>Zalogowano: <span><%=username%></span></p>
 <div class="page-data">
-  <div class="data-btn">
-    <button onclick="logout()">Wyloguj</button>
-    <button onclick="addMovie()">Dodaj nowy film</button>
+  <div class="actions-buttons-container">
+    <button type="button" onclick="logout()">Wyloguj</button>
+    <button type="button" onclick="addMovie()">Dodaj nowy film</button>
+    <button type="button" onclick="admin()">Powrót</button>
   </div>
   <div class="data-table">
     <table>

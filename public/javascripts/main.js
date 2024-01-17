@@ -2,6 +2,10 @@ function addUser() {
     window.location.href = '/admin/adduser'
 }
 
+function admin() {
+    window.location.href = '/admin'
+}
+
 function logout() {
     window.location.href = '/admin/logout'
 }

@@ -15,11 +15,15 @@ const loggedIn = (req, res, next) => {
     }
 }
 
+router.get('/logout', (req, res, next)=> {
+    res.clearCookie('session');
+    res.redirect('/login')
+})
 
 router.all('*', loggedIn, (req, res, next) => {
     console.log(req.session.admin);
     if (req.session.admin !== 1) {
-        return res.redirect("/")
+        return res.redirect("/movies")
     }
 
     next()
@@ -79,16 +83,9 @@ router.post("/adduser", function (req, res, next) {
                 message: "Użytkownik został dodany",
                 username: req.session.username
             })
-
         })
-
     })
 
-})
-
-router.get('/logout', (req, res, next)=> {
-    res.clearCookie('session');
-    res.redirect('/login')
 })
 
 module.exports = router;
